@@ -1,0 +1,15 @@
+{
+  "task_id": "XENOS-001",
+  "status": "DRAFT",
+  "current_owner": "director",
+  "current_stage": "intake",
+  "version": "0.1",
+  "approvals": {
+    "brief": false,
+    "design": false,
+    "implementation": false,
+    "final_acceptance": false,
+    "release": false
+  },
+  "next_action": "Director to approve task brief"
+}
