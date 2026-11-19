@@ -18,7 +18,7 @@ A chat can only inspect GitHub content if an appropriate GitHub connection/tool 
 
 ## Repository layout
 
-Copy the `github-template/` contents into a central repository, e.g. `Xen-AI-Team`.
+This repository is the central team repository. Each agent has a curated upstream skill library under `agents/<role>/skills/upstream/`.
 
 ```text
 Xen-AI-Team/
@@ -56,16 +56,16 @@ Xen-AI-Team/
 ## Setup
 
 1. Create a private or public GitHub repository named `Xen-AI-Team`. Prefer private if task documents may contain proprietary source details.
-2. Copy the contents of `github-template/` to the repository root.
-3. Create four separate ChatGPT conversations.
-4. In each conversation, paste the corresponding `agents/<role>/IDENTITY.md` and attach/paste the relevant skill files.
-5. Keep each conversation dedicated to its role. Do not ask one role to impersonate another during normal workflow.
-6. For each new project task, create a unique Task ID and task folder.
-7. Pass handoffs manually between conversations using `shared/templates/handoff.md`.
+2. Create four separate ChatGPT conversations.
+3. In each conversation, provide the corresponding `agents/<role>/IDENTITY.md`, `agents/<role>/skills/SKILL-INDEX.md`, and relevant full skill files. Use authorized GitHub access or attach/paste the files.
+4. Every agent must pass the mandatory skill preflight gate in `shared/SKILL-ENFORCEMENT.md` before work.
+5. Keep each conversation dedicated to its role.
+6. For each task, create a unique Task ID and task folder.
+7. Pass handoffs manually using `shared/templates/handoff.md` and include the Skill Usage Record.
 
 ## First message for each chat
 
-After providing its identity and skill files, send:
+After providing its identity, skill index, and relevant full skill files, send:
 
 > You are now operating as the Xen AI Team role defined in the provided identity and skills. Treat those documents as your operating contract. Confirm your role, authority limits, required inputs, output files, and handoff format. Do not begin a task until I provide a Task ID and task brief.
 
@@ -94,3 +94,10 @@ If documents conflict, stop and ask Director. Do not silently reconcile.
 - Do not run destructive commands or flash devices based on a chat instruction alone.
 - Do not push, merge, publish, deploy, or release without explicit Director approval.
 - Reviewer receives the smallest useful diff and evidence; do not expose unrelated secrets.
+
+
+## Skill library
+
+- Role-specific catalogs: `agents/<role>/skills/SKILL-INDEX.md`
+- Mandatory preflight and usage reporting: `shared/SKILL-ENFORCEMENT.md`
+- Upstream provenance: `THIRD-PARTY-SKILLS.md`

@@ -33,3 +33,13 @@
 - [ ] Task ID and versions match.
 - [ ] No unsupported claims.
 - [ ] Known gaps and risks disclosed.
+
+
+## Skill Usage Record
+
+- Skill index read:
+- Required/specialist skills and exact paths read:
+- Why each skill applied:
+- Procedure steps applied:
+- Resulting artifact/evidence:
+- Missing or not-applicable skills (with reason):

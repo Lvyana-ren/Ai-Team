@@ -4,7 +4,7 @@
 
 No chat is assumed to have access to another chat's history. The Director is the human relay:
 1. Chat A creates a handoff document.
-2. Director saves it in the GitHub task folder.
+2. Director saves it in the GitHub task folder, including the Skill Usage Record.
 3. Director opens Chat B and supplies the handoff plus referenced files (upload/paste, or authorized GitHub connection).
 4. Chat B verifies Task ID, version, sender, approval status, and required inputs.
 5. Chat B performs only its role and returns its deliverables and next handoff.
