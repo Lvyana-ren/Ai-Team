@@ -40,7 +40,7 @@ class XenVendorLayoutTests(unittest.TestCase):
     def test_style_search_runs_from_vendored_path(self):
         result = subprocess.run(
             [sys.executable, str(SEARCH), "dark dashboard", "--domain", "style", "--json"],
-            cwd=SKILL_DIR.parents[5],
+            cwd=SKILL_DIR.parents[4],
             capture_output=True,
             text=True,
             check=False,
@@ -52,7 +52,7 @@ class XenVendorLayoutTests(unittest.TestCase):
     def test_jetpack_compose_stack_search_runs(self):
         result = subprocess.run(
             [sys.executable, str(SEARCH), "compose state", "--stack", "jetpack-compose", "--json"],
-            cwd=SKILL_DIR.parents[5],
+            cwd=SKILL_DIR.parents[4],
             capture_output=True,
             text=True,
             check=False,

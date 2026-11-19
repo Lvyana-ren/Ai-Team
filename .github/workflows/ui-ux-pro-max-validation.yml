@@ -42,8 +42,9 @@ jobs:
               if name == "design-system":
                   assert payload.get("design_system"), "empty design-system result"
               else:
-                  assert payload, f"empty {name} result"
-              print(f"PASS: {name} search returned structured output")
+                  count = payload.get("count", 0)
+                  assert count > 0, f"{name} search returned no matches: {payload}"
+              print(f"PASS: {name} search returned {payload.get('count', 'design-system generated')} result(s)")
           PY
       - name: Run package-contained upstream tests and Xen layout tests
         shell: bash
