@@ -74,11 +74,6 @@ jobs:
               module = importlib.util.module_from_spec(spec)
               spec.loader.exec_module(module)
               suite.addTests(loader.loadTestsFromModule(module))
-          xen_test = test_dir / "test_xen_vendor_layout.py"
-          spec = importlib.util.spec_from_file_location("test_xen_vendor_layout", xen_test)
-          module = importlib.util.module_from_spec(spec)
-          spec.loader.exec_module(module)
-          suite.addTests(loader.loadTestsFromModule(module))
           result = unittest.TextTestRunner(verbosity=2).run(suite)
           sys.exit(not result.wasSuccessful())
           PY
