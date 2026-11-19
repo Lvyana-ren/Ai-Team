@@ -23,7 +23,7 @@ jobs:
           python-version: '3.12'
       - name: Validate vendored catalog data
         run: python agents/designer/skills/upstream/ui-ux-pro-max/scripts/validate_data.py
-      - name: Smoke-test domain and stack search
+      - name: Smoke-test domain, stack, and design-system search
         shell: bash
         run: |
           set -euo pipefail
@@ -45,5 +45,40 @@ jobs:
                   assert payload, f"empty {name} result"
               print(f"PASS: {name} search returned structured output")
           PY
-      - name: Run upstream Python tests
-        run: python -m unittest discover -s agents/designer/skills/upstream/ui-ux-pro-max/scripts/tests -p 'test_*.py'
+      - name: Run package-contained upstream tests and Xen layout tests
+        shell: bash
+        run: |
+          python - <<'PY'
+          import importlib.util
+          import sys
+          import unittest
+          from pathlib import Path
+
+          test_dir = Path("agents/designer/skills/upstream/ui-ux-pro-max/scripts/tests").resolve()
+          sys.path.insert(0, str(test_dir.parent))
+          sys.path.insert(0, str(test_dir))
+          excluded = {
+              "test_catalog_refresh.py",
+              "test_catalog_summary_line_endings.py",
+              "test_design_system_tokens.py",
+              "test_relevance_evaluator.py",
+              "test_skill_script_paths.py",
+          }
+          suite = unittest.TestSuite()
+          loader = unittest.TestLoader()
+          for path in sorted(test_dir.glob("test_*.py")):
+              if path.name in excluded:
+                  print(f"SKIP (requires upstream monorepo files): {path.name}")
+                  continue
+              spec = importlib.util.spec_from_file_location(path.stem, path)
+              module = importlib.util.module_from_spec(spec)
+              spec.loader.exec_module(module)
+              suite.addTests(loader.loadTestsFromModule(module))
+          xen_test = test_dir / "test_xen_vendor_layout.py"
+          spec = importlib.util.spec_from_file_location("test_xen_vendor_layout", xen_test)
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          suite.addTests(loader.loadTestsFromModule(module))
+          result = unittest.TextTestRunner(verbosity=2).run(suite)
+          sys.exit(not result.wasSuccessful())
+          PY

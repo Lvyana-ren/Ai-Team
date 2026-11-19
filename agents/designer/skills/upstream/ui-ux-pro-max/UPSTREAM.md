@@ -30,5 +30,5 @@ The vendored data, scripts, and references are copied from the pinned upstream c
 2. Compare the complete `.claude/skills/ui-ux-pro-max/` file tree against this directory.
 3. Sync all files, preserving the upstream directory structure and license.
 4. Reapply only the documented repository-path adaptation in `SKILL.md`.
-5. Run search smoke tests and the upstream test suite where the environment permits.
+5. Run catalog validation and search smoke tests. The upstream test directory also contains five monorepo-integration modules that require source/CLI assets outside the vendored skill subtree (`scripts/refresh-*`, `scripts/generate-catalog-summary.py`, `scripts/evaluate-relevance.py`, `src/`, and `cli/`). Xen's CI excludes those five modules, runs the package-contained upstream unit tests, and adds `scripts/tests/test_xen_vendor_layout.py` to verify the vendored paths and real CLI execution.
 6. Update this file and `THIRD-PARTY-SKILLS.md` with the new pinned commit.
