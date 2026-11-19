@@ -36,9 +36,10 @@ For the full rule list per category (all 130 UX guidelines with rationale), read
 
 ## Running the search tool
 
-The search script lives inside this skill's own directory, not the project directory. Always invoke it by its full path — do not assume a particular working directory:
+The search script lives inside this skill's own directory, not the project directory. Always invoke it by its full path — do not assume a particular working directory. From a local Xen-AI-Team checkout, first resolve the repository root:
 
 ```bash
+export XEN_AI_TEAM_ROOT="$(git rev-parse --show-toplevel)"
 python "$XEN_AI_TEAM_ROOT/agents/designer/skills/upstream/ui-ux-pro-max/scripts/search.py" "<query>" --domain <domain>
 ```
 

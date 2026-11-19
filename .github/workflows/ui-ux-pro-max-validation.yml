@@ -1,0 +1,49 @@
+name: UI-UX Pro Max validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'agents/designer/skills/upstream/ui-ux-pro-max/**'
+      - '.github/workflows/ui-ux-pro-max-validation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate vendored catalog data
+        run: python agents/designer/skills/upstream/ui-ux-pro-max/scripts/validate_data.py
+      - name: Smoke-test domain and stack search
+        shell: bash
+        run: |
+          set -euo pipefail
+          SEARCH=agents/designer/skills/upstream/ui-ux-pro-max/scripts/search.py
+          python "$SEARCH" "dark dashboard" --domain style --json > /tmp/style.json
+          python "$SEARCH" "keyboard focus modal" --domain ux --json > /tmp/ux.json
+          python "$SEARCH" "accessible icon button" --domain icons --json > /tmp/icons.json
+          python "$SEARCH" "dashboard typography" --domain typography --json > /tmp/typography.json
+          python "$SEARCH" "jetpack compose state" --stack jetpack-compose --json > /tmp/compose.json
+          python "$SEARCH" "AI productivity dashboard" --design-system --json > /tmp/design-system.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for name in ("style", "ux", "icons", "typography", "compose", "design-system"):
+              payload = json.loads(Path(f"/tmp/{name}.json").read_text())
+              if name == "design-system":
+                  assert payload.get("design_system"), "empty design-system result"
+              else:
+                  assert payload, f"empty {name} result"
+              print(f"PASS: {name} search returned structured output")
+          PY
+      - name: Run upstream Python tests
+        run: python -m unittest discover -s agents/designer/skills/upstream/ui-ux-pro-max/scripts/tests -p 'test_*.py'
