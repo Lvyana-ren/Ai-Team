@@ -246,7 +246,7 @@ Clone the repository to a trusted workspace:
 
 ```bash
 git clone https://github.com/Lvyana-ren/Ai-Team.git
-cd Xen-AI-Team
+cd Ai-Team
 git switch main
 git pull --ff-only origin main
 ```
@@ -950,6 +950,12 @@ If instructions, task documents, versions, or approvals conflict, stop the affec
 | [THIRD-PARTY-SKILLS.md](THIRD-PARTY-SKILLS.md) | Upstream skill provenance and attribution |
 | `agents/<role>/IDENTITY.md` | Role-specific authority and responsibilities |
 | `agents/<role>/skills/SKILL-INDEX.md` | Role-specific skill selection and required skills |
+
+---
+
+## License and third-party materials
+
+The original AI Team project materials are distributed under the Apache License 2.0; see [`LICENSE`](LICENSE). Vendored third-party skills and assets remain subject to their respective upstream licenses and notices. See [`THIRD-PARTY-SKILLS.md`](THIRD-PARTY-SKILLS.md) and [`third-party-licenses/`](third-party-licenses/) before redistributing those materials. The repository-level Apache license does not replace or override third-party licenses.
 
 ---
 
