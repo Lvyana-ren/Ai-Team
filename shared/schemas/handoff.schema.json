@@ -4,16 +4,32 @@
   "type": "object",
   "required": ["task_id", "version", "from", "to", "status", "deliverables", "next_action"],
   "properties": {
-    "task_id": {"type": "string", "pattern": "^[A-Z0-9]+-[0-9]{3,}$"},
-    "version": {"type": "string"},
-    "from": {"type": "string", "enum": ["director", "orchestrator", "designer", "programmer", "reviewer"]},
-    "to": {"type": "string", "enum": ["director", "orchestrator", "designer", "programmer", "reviewer"]},
-    "status": {"type": "string", "enum": ["draft", "ready", "blocked", "needs_changes", "pass", "insufficient_evidence", "accepted"]},
-    "deliverables": {"type": "array", "items": {"type": "string"}},
-    "required_inputs": {"type": "array", "items": {"type": "string"}},
-    "director_approval": {"type": ["string", "null"]},
-    "next_action": {"type": "string"},
-    "open_questions": {"type": "array", "items": {"type": "string"}}
+    "task_id": { "type": "string", "pattern": "^[A-Z0-9]+-[0-9]{3,}$" },
+    "version": { "type": "string", "pattern": "^[A-Z0-9]+-[0-9]{3,}-[A-Z]+-v[0-9]+\\.[0-9]+$" },
+    "from": { "type": "string", "enum": ["director", "orchestrator", "designer", "programmer", "reviewer"] },
+    "to": { "type": "string", "enum": ["director", "orchestrator", "designer", "programmer", "reviewer"] },
+    "status": { "type": "string", "description": "Workflow status, not a review verdict.", "enum": ["draft", "ready", "in_progress", "blocked", "needs_changes", "completed", "superseded"] },
+    "review_verdict": { "type": ["string", "null"], "description": "Independent review outcome only; null when no review was performed.", "enum": ["pass", "pass_with_observations", "conditional_pass", "reject", "insufficient_evidence", "not_reviewed", null] },
+    "deliverables": { "type": "array", "items": { "type": "string" } },
+    "required_inputs": { "type": "array", "items": { "type": "string" } },
+    "director_approval": { "type": ["string", "null"] },
+    "next_action": { "type": "string" },
+    "open_questions": { "type": "array", "items": { "type": "string" } },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "role"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "role": { "type": "string", "enum": ["input", "baseline", "candidate", "evidence", "report", "other"] },
+          "version": { "type": ["string", "null"] },
+          "sha256": { "type": ["string", "null"], "pattern": "^[a-fA-F0-9]{64}$" },
+          "notes": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      }
+    }
   },
   "additionalProperties": false
 }

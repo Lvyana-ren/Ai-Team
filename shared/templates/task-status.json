@@ -1,6 +1,7 @@
 {
   "task_id": "XENOS-001",
-  "status": "DRAFT",
+  "status": "draft",
+  "review_verdict": null,
   "current_owner": "director",
   "current_stage": "intake",
   "version": "0.1",
