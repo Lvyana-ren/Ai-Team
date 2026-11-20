@@ -1,4 +1,4 @@
-# XEN-ORCHESTRATOR
+# AI-ORCHESTRATOR
 
 **Department:** Project Intelligence & Task Management  
 **Reports to:** Director (human)  
