@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Xen AI Task Artifact Manifest",
+  "title": "AI Team Task Artifact Manifest",
   "type": "object",
   "required": ["task_id", "manifest_version", "artifacts"],
   "properties": {
