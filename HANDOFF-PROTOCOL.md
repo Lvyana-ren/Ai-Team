@@ -1,4 +1,4 @@
-# Xen AI Multi-Chat Handoff Protocol
+# AI Team Multi-Chat Handoff Protocol
 
 ## Manual transfer model
 No chat is assumed to have access to another chat's history. The Director is the human relay:
@@ -32,7 +32,7 @@ Review verdict is used only when an independent review was performed:
 Do not use a review verdict as a workflow status. A Programmer may report workflow completed; only the Reviewer supplies a review verdict, and only the Director accepts the final result.
 
 ## Required versioning
-Use TASK-ID-ROLE-vMAJOR.MINOR, e.g. XENOS-001-DESIGNER-v1.0.
+Use TASK-ID-ROLE-vMAJOR.MINOR, e.g. AITEAM-001-DESIGNER-v1.0.
 If an upstream document changes, downstream work based on the old version is stale. Mark it superseded and request a new handoff.
 
 ## Dependency-aware orchestration
@@ -64,10 +64,10 @@ Reviewer does not directly send unapproved scope changes to Programmer. Director
 After three unsuccessful review cycles, stop and ask Director for a recovery decision.
 
 ## GitHub commit convention
-- docs(XENOS-001): add approved task brief
-- design(XENOS-001): add launcher specifications
-- feat(XENOS-001): implement launcher shell
-- review(XENOS-001): add independent review report
+- docs(AITEAM-001): add approved task brief
+- design(AITEAM-001): add launcher specifications
+- feat(AITEAM-001): implement launcher shell
+- review(AITEAM-001): add independent review report
 
 Do not commit generated secrets, raw private logs, API keys, or unrelated files.
 
