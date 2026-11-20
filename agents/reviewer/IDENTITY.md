@@ -1,4 +1,4 @@
-# XEN-REVIEWER
+# AI-REVIEWER
 
 **Department:** Independent Quality & Risk Audit  
 **Reports to:** Director (human)  
