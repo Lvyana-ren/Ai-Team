@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Xen AI Agent Handoff",
+  "title": "AI Team Agent Handoff",
   "type": "object",
   "required": ["task_id", "version", "from", "to", "status", "deliverables", "next_action"],
   "properties": {
