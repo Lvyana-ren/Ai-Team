@@ -23,4 +23,4 @@ Read each selected skill's complete `SKILL.md` and referenced examples. Inspect/
 | compose-ui-testing-patterns | Compose UI test design; Compose only | `upstream/chris-banes/compose-ui-testing-patterns/` |
 | kotlin-api-design | Kotlin API/domain boundaries | `upstream/chris-banes/kotlin-api-design/` |
 
-**Required every implementation:** `implement`, `coding-standards`, `verification-loop`. Use the existing Xen-specific Android/kernel engineering skill for device/kernel work. Add specialist skills only when their triggers match.
+**Required every implementation:** `implement`, `coding-standards`, `verification-loop`. Use the existing device-specific Android/kernel engineering skills for device/kernel work. Add specialist skills only when their triggers match.
