@@ -1,14 +1,14 @@
-# Xen AI Team
+# AI Team
 
 **A manually coordinated, role-based multi-chat workflow for planning, designing, implementing, and independently reviewing software work.**
 
 > **Operating model:** Four dedicated ChatGPT conversations, one human Director, and one GitHub repository as the shared source of truth. Handoffs between chats are manual.
 
 - **Director:** human owner, scope authority, and final acceptance decision.
-- **XEN-ORCHESTRATOR:** planning, decomposition, dependency management, and handoff preparation.
-- **XEN-DESIGNER:** UI/UX and interaction specifications.
-- **XEN-PROGRAMMER:** approved implementation and validation.
-- **XEN-REVIEWER:** independent, read-only review.
+- **AI-ORCHESTRATOR:** planning, decomposition, dependency management, and handoff preparation.
+- **AI-DESIGNER:** UI/UX and interaction specifications.
+- **AI-PROGRAMMER:** approved implementation and validation.
+- **AI-REVIEWER:** independent, read-only review.
 
 This README is the operational entry point. The detailed rules remain in the linked policy, identity, skill, schema, and template files. When in doubt, read those source documents rather than relying on a summary in this README.
 
@@ -39,7 +39,7 @@ This README is the operational entry point. The detailed rules remain in the lin
 
 ## What this repository is
 
-Xen AI Team is an operating framework for coordinating four separate ChatGPT conversations. Each conversation has a narrowly defined role, responsibilities, required outputs, skill catalog, and authority limits.
+AI Team is an operating framework for coordinating four separate ChatGPT conversations. Each conversation has a narrowly defined role, responsibilities, required outputs, skill catalog, and authority limits.
 
 The repository provides:
 
@@ -78,13 +78,13 @@ The normal control flow is:
         (goal, scope, approval, acceptance)
                      |
                      v
-              XEN-ORCHESTRATOR
+              AI-ORCHESTRATOR
        clarify -> research -> plan -> split
                      |
           +----------+----------+
           |                     |
           v                     v
-     XEN-DESIGNER          XEN-PROGRAMMER
+     AI-DESIGNER          AI-PROGRAMMER
    design specification   implementation
           |                     |
           +----------+----------+
@@ -92,11 +92,11 @@ The normal control flow is:
           approved inputs / handoff
                      |
                      v
-              XEN-PROGRAMMER
+              AI-PROGRAMMER
              build + test + report
                      |
                      v
-               XEN-REVIEWER
+               AI-REVIEWER
           independent read-only review
                      |
                      v
@@ -128,7 +128,7 @@ The sequence is mandatory. Do not skip preflight because a task looks easy.
 The following is the intended high-level layout. Some folders contain role-specific upstream skill snapshots and task records beyond this abbreviated view.
 
 ```text
-Xen-AI-Team/
+Ai-Team/
 ├── README.md
 ├── HANDOFF-PROTOCOL.md
 ├── THIRD-PARTY-SKILLS.md
@@ -245,7 +245,7 @@ See [shared/SKILL-DEPENDENCIES.md](shared/SKILL-DEPENDENCIES.md).
 Clone the repository to a trusted workspace:
 
 ```bash
-git clone https://github.com/Lvyana-ren/Xen-AI-Team.git
+git clone https://github.com/Lvyana-ren/Ai-Team.git
 cd Xen-AI-Team
 git switch main
 git pull --ff-only origin main
@@ -271,10 +271,10 @@ Do not assume this README replaces the complete role contracts or skill instruct
 
 Create one conversation for each role:
 
-- `XEN-ORCHESTRATOR`
-- `XEN-DESIGNER`
-- `XEN-PROGRAMMER`
-- `XEN-REVIEWER`
+- `AI-ORCHESTRATOR`
+- `AI-DESIGNER`
+- `AI-PROGRAMMER`
+- `AI-REVIEWER`
 
 Keep each conversation dedicated to its assigned role. Do not use one chat as multiple roles for convenience; role separation is part of the review and authority model.
 
@@ -294,7 +294,7 @@ You can provide these using an authorized repository connection, file upload, or
 
 After loading the role documents, send this initialization instruction:
 
-> You are now operating as the Xen AI Team role defined in the provided identity and skills. Treat those documents as your operating contract. Confirm your role, authority limits, required inputs, output files, and handoff format. Do not begin a task until I provide a Task ID and task brief.
+> You are now operating as the AI Team role defined in the provided identity and skills. Treat those documents as your operating contract. Confirm your role, authority limits, required inputs, output files, and handoff format. Do not begin a task until I provide a Task ID and task brief.
 
 The role should confirm its identity and constraints. This is an initialization check, not proof that it can successfully perform every future task.
 
@@ -332,7 +332,7 @@ Report actual access. Never infer write permission from read permission. The Rev
 - Required every UI task: `ui-ux-pro-max`.
 - Add motion, native mobile, Compose, or animation skills only when their triggers apply.
 - Do not apply Jetpack Compose guidance to a Views-based UI or another toolkit.
-- For the vendored UI/UX Pro Max CLI, follow its own `SKILL.md`; set `XEN_AI_TEAM_ROOT` to the repository root and verify Python 3 before claiming the CLI ran.
+- For the vendored UI/UX Pro Max CLI, follow its own `SKILL.md`; set `AI_TEAM_ROOT` to the repository root and verify Python 3 before claiming the CLI ran.
 
 **Programmer**
 - Required every implementation: `implement`, `coding-standards`, and `verification-loop`.
@@ -360,7 +360,7 @@ PROJECT-002
 PROJECT-003
 ```
 
-The schema requires an uppercase alphanumeric project prefix followed by a hyphen and at least three digits. Example: `XENOS-001`.
+The schema requires an uppercase alphanumeric project prefix followed by a hyphen and at least three digits. Example: `AITEAM-001`.
 
 Do not reuse a Task ID for unrelated work. Keep follow-up changes under the same Task ID only when they are part of the same approved scope.
 
@@ -428,7 +428,7 @@ It must distinguish a proposed assignment from an actual handoff. Listing a role
 
 ### Stage C — Designer prepares the specification (when needed)
 
-1. Director manually passes the approved brief and required inputs to XEN-DESIGNER.
+1. Director manually passes the approved brief and required inputs to AI-DESIGNER.
 2. Designer verifies task ID, version, approval, and artifact access.
 3. Designer performs skill preflight.
 4. Designer inspects existing product conventions and supplied assets.
@@ -441,7 +441,7 @@ If the task does not involve design, the Orchestrator should explain why the Des
 
 ### Stage D — Programmer implements
 
-1. Director manually passes the approved brief, specifications, and required source artifacts to XEN-PROGRAMMER.
+1. Director manually passes the approved brief, specifications, and required source artifacts to AI-PROGRAMMER.
 2. Programmer verifies the handoff and confirms target repository/branch and baseline revision.
 3. Programmer performs skill preflight and checks runtime prerequisites.
 4. Programmer inspects the existing codebase before editing.
@@ -455,7 +455,7 @@ A Programmer report of `completed` means only that its assigned work is complete
 
 ### Stage E — Reviewer independently audits
 
-1. Director manually passes the approved scope, baseline, candidate diff/files, Programmer report, and evidence to XEN-REVIEWER.
+1. Director manually passes the approved scope, baseline, candidate diff/files, Programmer report, and evidence to AI-REVIEWER.
 2. Reviewer verifies task identity, approved scope, versions, and artifact access.
 3. Reviewer performs its own skill preflight.
 4. Reviewer inspects the actual changes and relevant surrounding code.
@@ -514,10 +514,10 @@ Use:
 Example:
 
 ```text
-XENOS-001-ORCHESTRATOR-v1.0
-XENOS-001-DESIGNER-v1.0
-XENOS-001-PROGRAMMER-v1.0
-XENOS-001-REVIEWER-v1.0
+AITEAM-001-ORCHESTRATOR-v1.0
+AITEAM-001-DESIGNER-v1.0
+AITEAM-001-PROGRAMMER-v1.0
+AITEAM-001-REVIEWER-v1.0
 ```
 
 If an upstream brief or specification changes, downstream work based on the old version may be stale. Mark the old handoff `superseded` and request a new handoff. Do not silently continue against conflicting versions.
@@ -821,11 +821,11 @@ Do not force-push, rewrite shared history, or merge without explicit authorizati
 ### Commit message examples
 
 ```text
-docs(XENOS-001): add task operating guide
-design(XENOS-002): add dashboard interaction specification
-feat(XENOS-003): implement approved settings screen
-test(XENOS-003): add settings regression tests
-review(XENOS-003): add independent review report
+docs(AITEAM-001): add task operating guide
+design(AITEAM-002): add dashboard interaction specification
+feat(AITEAM-003): implement approved settings screen
+test(AITEAM-003): add settings regression tests
+review(AITEAM-003): add independent review report
 ```
 
 Use the convention in [HANDOFF-PROTOCOL.md](HANDOFF-PROTOCOL.md) and keep commits focused.
